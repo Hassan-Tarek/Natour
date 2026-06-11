@@ -6,14 +6,14 @@ const userRouter = require('./routes/userRouter');
 const app = express();
 
 // MIDDLEWARES
-if (process.env.ENVIRONMENT === 'Development') {
+if (process.env.ENVIRONMENT === 'development') {
   app.use(morgan('dev'));
 }
-app.use(express.json);
+app.use(express.json());
 app.use(express.static(`${__dirname}/data`));
 
 // ROUTES
-app.route('/api/v1/tours', tourRouter);
-app.route('/api/v1/users', userRouter);
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/users', userRouter);
 
 module.exports = app;
